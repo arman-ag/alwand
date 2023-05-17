@@ -3,10 +3,10 @@ interface dataType {
   email: string;
   password: string;
 }
-const get = <A>(url: string) => {
-  return axios.request<A>({
-    method: 'GET',
-    url,
+const get = (page: number) => {
+  return axios.request({
+    method: 'get',
+    url: `${import.meta.env.VITE_API_CARDS}?page={${page}}`,
   });
 };
 const post = (data: dataType) => {

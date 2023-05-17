@@ -1,9 +1,9 @@
 import { checkboxProps } from './type';
 
-const Checkbox = ({ title }: checkboxProps) => {
+const Checkbox = ({ title, style }: checkboxProps) => {
   return (
-    <div>
-      <input name={title} type='checkbox' />
+    <div className={`${style} flex items-center`}>
+      <input className='ml-2 ' name={title} type='checkbox' />
       <label>{title}</label>
     </div>
   );

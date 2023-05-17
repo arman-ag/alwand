@@ -21,9 +21,7 @@ const authenticateSend = (user: userType) => {
   };
 };
 const authenticateResult = (result) => {
-  return {
-    ...result,
-  };
+  return result;
 };
 export const authenticationAction = {
   authenticateSend,
