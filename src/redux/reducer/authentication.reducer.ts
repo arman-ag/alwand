@@ -8,7 +8,7 @@ const authentication = (state = initial, action) => {
     case 'FAIL_AUTHENTIC':
       return { ...action.data };
     default:
-      return { authentication: false };
+      return { ...state };
   }
 };
 export default authentication;

@@ -1,27 +1,23 @@
 import axios from 'axios';
-
+interface dataType {
+  email: string;
+  password: string;
+}
 const get = <A>(url: string) => {
   return axios.request<A>({
     method: 'GET',
     url,
   });
 };
-const post = (data) => {
+const post = (data: dataType) => {
   return axios.request({
     method: 'post',
-    url: 'https://reqres.in/api/login',
+    url: `${import.meta.env.VITE_API_DEV}/login`,
     data,
   });
 };
-const put = <T, D>(url: string, data: T) => {
-  return axios.request<T, D>({
-    method: 'put',
-    url,
-    data,
-  });
-};
+
 export const api = {
   get,
   post,
-  put,
 };

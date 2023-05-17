@@ -5,9 +5,9 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 import Login from '../views/Login';
 import Panel from '../views/Panel';
-
 const AuthCheck = ({ authenticate }: { authenticate: boolean }) => {
   return authenticate ? <Outlet /> : <Navigate to='/' />;
 };
@@ -16,7 +16,7 @@ const Home = ({ authenticate }: { authenticate: boolean }) => {
   return authenticate ? <Navigate to='/Panel' /> : <Outlet />;
 };
 const RouterWrapper = () => {
-  const authenticate = false;
+  const authenticate = useAuth();
   return (
     <BrowserRouter>
       <Routes>

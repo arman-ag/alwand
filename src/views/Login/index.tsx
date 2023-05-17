@@ -2,18 +2,17 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import loginLogo from '../../assets/login.png';
 import loginLogo2 from '../../assets/login2.png';
-import { Button } from '../../components/common/Button';
 import Checkbox from '../../components/common/Checkbox';
 import { Input } from '../../components/common/Input';
 import { authenticationAction } from '../../redux/actions';
 
 function Login() {
-  const dispatch = useDispatch();
-
-  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { authentication } = useSelector((state: any) => state.authentication);
-
+  console.log(authentication);
+  const dispatch = useDispatch();
+  console.log('caa');
   return (
     <>
       <div dir='rtl' className='flex h-full'>
@@ -39,31 +38,29 @@ function Login() {
                 e.preventDefault();
               }}
             >
-              <Input setEntry={setUserName} title={'نام کاربری'} />
+              <Input setEntry={setEmail} title={'نام کاربری'} />
               <Input setEntry={setPassword} title={'کلمه عبور'} />
               <div />
               <Checkbox title='مرا به خاطر داشته باش' />
-              <Button
-                name='ورود'
-                actions={() =>
+              <button
+                onClick={() => {
                   dispatch(
-                    authenticationAction.authenticateSend({
-                      email: userName,
-                      password,
-                    })
-                  )
-                }
-              />
+                    authenticationAction.authenticateSend({ email, password })
+                  );
+                }}
+              >
+                ورود
+              </button>
               <div className='flex'>
-                <a href='#'>ثبت نام</a>
                 <p>کاربر جدید هستید </p>
+                <a href='#'>ثبت نام</a>
               </div>
             </form>
           </div>
           <div>
             <span>یا</span>
           </div>
-          <Button name='ورود از طریق حساب گوگل' />
+          <button>ورود از طریق حساب گوگل</button>
         </div>
       </div>
     </>
