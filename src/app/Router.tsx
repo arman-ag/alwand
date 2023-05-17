@@ -1,4 +1,3 @@
-import useAuth from 'hooks/useAuth';
 import {
   BrowserRouter,
   Navigate,
@@ -14,10 +13,10 @@ const AuthCheck = ({ authenticate }: { authenticate: boolean }) => {
 };
 
 const Home = ({ authenticate }: { authenticate: boolean }) => {
-  return authenticate ? <Navigate to='/user' /> : <Outlet />;
+  return authenticate ? <Navigate to='/Panel' /> : <Outlet />;
 };
 const RouterWrapper = () => {
-  const [authenticate] = useAuth();
+  const authenticate = false;
   return (
     <BrowserRouter>
       <Routes>

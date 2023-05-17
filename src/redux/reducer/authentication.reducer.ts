@@ -4,8 +4,9 @@ const initial = {
 const authentication = (state = initial, action) => {
   switch (action.type) {
     case 'SUCCESSFUL_AUTHENTIC':
-      return { authentication: action.authentication };
-
+      return { ...action.data };
+    case 'FAIL_AUTHENTIC':
+      return { ...action.data };
     default:
       return { authentication: false };
   }
