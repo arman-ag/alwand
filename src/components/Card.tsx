@@ -17,7 +17,7 @@ const Card = ({ cardDetail, setChoseCard, choseCard }) => {
       <div className='rounded-lg h-85 shadow-lg  w-56 sm:w-80  dark:bg-darkBlue-100 dark:text-white'>
         <img
           className='rounded-t-lg h-60  '
-          src={cardDetail && cardDetail?.images}
+          src={cardDetail && cardDetail?.images[0]}
           alt={cardDetail?.title}
         />
 

@@ -17,8 +17,8 @@ const Panel = () => {
   }, [data]);
 
   useEffect(() => {
-    dispatch(gryItemAction.getItem(pagination));
-  }, [pagination]);
+    dispatch(gryItemAction.getItem());
+  }, []);
   const deleteAction = () => {
     const remainingCards = listCards.filter((item) => {
       return item.id !== choseCard;
@@ -67,24 +67,7 @@ const Panel = () => {
           );
         })}
       </div>
-      <div className='flex justify-center'>
-        <button onClick={() => setPagination((pervious) => ++pervious)}>
-          +{' '}
-        </button>
-        <span>{pagination}</span>
-        <button
-          onClick={() =>
-            setPagination((pervious) => {
-              if (pervious > 1) {
-                return pervious - 1;
-              }
-              return 1;
-            })
-          }
-        >
-          -
-        </button>
-      </div>
+
       <div className='flex justify-end items-center bg-[#F8F8FB] py-2'>
         {formik.touched.editTitle && formik.errors.editTitle ? (
           <div className='text-red-700 mr-5'>{formik.errors.editTitle}</div>
