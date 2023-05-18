@@ -1,8 +1,9 @@
 export interface inputProps {
   title: string;
-  setEntry: Function;
+  onChange: Function;
   type: string;
   entry: string;
+  placeholder: string;
 }
 
 export interface checkboxProps {

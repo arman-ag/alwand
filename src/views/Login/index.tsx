@@ -1,5 +1,8 @@
+import { useFormik } from 'formik';
 import { useState } from 'react';
+import { FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
 import loginLogo from '../../assets/login.png';
 import loginLogo2 from '../../assets/login2.svg';
 import Checkbox from '../../components/common/Checkbox';
@@ -10,6 +13,25 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: Yup.object().shape({
+      email: Yup.string().email('Invalid email address').required('Required'),
+      password: Yup.string().required('Required'),
+    }),
+    onSubmit: (values) => {
+      dispatch(
+        authenticationAction.authenticateSend({
+          email: values.email,
+          password: values.password,
+        })
+      );
+    },
+  });
+
   return (
     <>
       <div dir='rtl' className='flex h-full'>
@@ -31,39 +53,54 @@ function Login() {
           <div>
             <form
               className=' flex flex-col  justify-between '
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
+              onSubmit={formik.handleSubmit}
             >
-              <Input type={'email'} setEntry={setEmail} title={'نام کاربری'} />
               <Input
+                onChange={formik.handleChange}
+                placeholder=' ایمیل یا کد ملی خود را وارد کنید'
+                type={'email'}
+                title={'نام کاربری'}
+                entry={formik.values.email}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <div className='text-red-700 mt-1'>{formik.errors.email}</div>
+              ) : null}
+              <Input
+                onChange={formik.handleChange}
+                entry={formik.values.password}
+                placeholder={'کلمه عبور خود را وارد کنید'}
                 type={'password'}
-                setEntry={setPassword}
                 title={'کلمه عبور'}
               />
+              {formik.touched.password && formik.errors.password ? (
+                <div className='text-red-700 mt-1'>
+                  {formik.errors.password}
+                </div>
+              ) : null}
               <div />
               <Checkbox style='mt-5' title='مرا به خاطر داشته باش' />
-              <button
-                onClick={() => {
-                  dispatch(
-                    authenticationAction.authenticateSend({ email, password })
-                  );
-                }}
-              >
+              <button className='bg-blue-800 my-3 text-white font-bold py-2 px-4 border border-blue-700 rounded'>
                 ورود
               </button>
               <div className='flex'>
-                <p>کاربر جدید هستید </p>
-                <a href='#'>ثبت نام</a>
+                <p> کاربر جدید هستید ؟ </p>
+                <a href='#' className='mr-3 text-blue-700'>
+                  ثبت نام
+                </a>
               </div>
             </form>
           </div>
-          <div className='flex items-center'>
+          <div className='flex items-center my-6'>
             <div className='w-full h-0 border border-[#E9EBFF' />
             <span className='mx-2'>یا</span>
             <div className='w-full h-0 border border-[#E9EBFF' />
           </div>
-          <button>ورود از طریق حساب گوگل</button>
+          <button className='bg-[#E9EBFF]  font-bold py-2 px-4   rounded'>
+            <div className='flex items-center justify-center'>
+              <FaGoogle className='text-red-500 text-2xl ml-3' />
+              <span>ورود از طریق حساب گوگل</span>
+            </div>
+          </button>
         </div>
       </div>
     </>

@@ -62,7 +62,7 @@ const Panel = () => {
             Edit
           </button>
         </form>
-        <button onClick={deleteAction} className='mx-5'>
+        <button onClick={deleteAction} className=' mx-5'>
           Delete
         </button>
       </div>
