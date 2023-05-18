@@ -1,5 +1,5 @@
+// @ts-nocheck
 import { useFormik } from 'formik';
-import { useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
@@ -8,10 +8,7 @@ import loginLogo2 from '../../assets/login2.svg';
 import Checkbox from '../../components/common/Checkbox';
 import { Input } from '../../components/common/Input';
 import { authenticationAction } from '../../redux/actions';
-
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {

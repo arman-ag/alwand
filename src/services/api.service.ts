@@ -6,7 +6,7 @@ interface dataType {
 const get = (page: number) => {
   return axios.request({
     method: 'get',
-    url: `${import.meta.env.VITE_API_CARDS}?page={${page}}`,
+    url: `${import.meta.env.VITE_API_CARDS}?page=${page}`,
   });
 };
 const post = (data: dataType) => {

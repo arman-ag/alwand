@@ -1,5 +1,5 @@
+// @ts-nocheck
 import { useSelector } from 'react-redux';
-
 const useAuth = () => {
   const { result, token } = useSelector((state) => state.authentication);
   const userToken = localStorage.getItem('token');

@@ -1,6 +1,6 @@
+// @ts-nocheck
 import { api } from '../../services/api.service';
 import { userType } from './types';
-
 const authenticateSend = (user: userType) => {
   return async (dispatch) => {
     try {

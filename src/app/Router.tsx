@@ -8,6 +8,7 @@ import {
 import useAuth from '../hooks/useAuth';
 import Login from '../views/Login';
 import Panel from '../views/Panel';
+import ErrorBoundary from '../views/errorBoundry';
 const AuthCheck = ({ authenticate }: { authenticate: boolean }) => {
   return authenticate ? <Outlet /> : <Navigate to='/' />;
 };
@@ -20,10 +21,16 @@ const RouterWrapper = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Home authenticate={authenticate} />}>
+        <Route
+          errorElement={<ErrorBoundary />}
+          element={<Home authenticate={authenticate} />}
+        >
           <Route path='/' element={<Login />} />
         </Route>
-        <Route element={<AuthCheck authenticate={authenticate} />}>
+        <Route
+          errorElement={<ErrorBoundary />}
+          element={<AuthCheck authenticate={authenticate} />}
+        >
           <Route path='/panel' element={<Panel />} />
         </Route>
       </Routes>
