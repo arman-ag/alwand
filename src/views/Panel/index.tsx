@@ -15,7 +15,7 @@ const Panel = () => {
   const dispatch = useDispatch();
 
   const cards = useSelector((state: RootState) => state.cards);
-
+  const { email } = useSelector((state: RootState) => state.authentication);
   useEffect(() => {
     setListCards(cards);
   }, [cards]);
@@ -60,9 +60,9 @@ const Panel = () => {
         <div>loading</div>
       ) : (
         <>
-          <header className='flex  items-center bg-[#F8F8FB] p-2 shadow-2xl'>
-            <SlUser />
-            <span></span>
+          <header className='flex sticky top-0 w-full items-center bg-[#F8F8FB] p-2 shadow-md'>
+            <SlUser className='mr-2 text-xl' />
+            <span>{email}</span>
           </header>
           <div
             onClick={() => setChoseCard(null)}
@@ -101,7 +101,7 @@ const Panel = () => {
               <MdArrowForwardIos />
             </button>
           </div>
-          <footer className='flex justify-end items-center bg-[#F8F8FB] p-2 shadow-2xl'>
+          <footer className='flex justify-end items-center bg-[#F8F8FB] px-2 shadow-md mt-4'>
             {formik.touched.editTitle && formik.errors.editTitle ? (
               <div className='text-red-700 mr-5'>{formik.errors.editTitle}</div>
             ) : null}
@@ -115,7 +115,7 @@ const Panel = () => {
               />
               <button
                 type='submit'
-                className='bg-blue-800 my-3 text-white font-bold py-2 px-4 border border-blue-700 rounded ml-5'
+                className='bg-blue-800 my-3 text-white font-bold py-2 px-4 border border-blue-700 rounded ml-3'
               >
                 Edit
               </button>
@@ -123,7 +123,7 @@ const Panel = () => {
 
             <button
               onClick={deleteAction}
-              className=' mx-5 bg-red-800 my-3 text-white font-bold py-2 px-4 border border-red-700 rounded'
+              className=' ml-2 bg-red-800 my-3 text-white font-bold py-2 px-4 border border-red-700 rounded'
             >
               Delete
             </button>
