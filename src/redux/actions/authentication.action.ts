@@ -11,12 +11,15 @@ const authenticateSend = (user: userType) => {
       dispatch(
         authenticateResult({
           type: 'SUCCESSFUL_AUTHENTIC',
-          data: { result: true, token, ...user },
+          data: { result: true, token, alertFire: false, ...user },
         })
       );
     } catch {
       dispatch(
-        authenticateResult({ type: 'FAIL_AUTHENTIC', data: { result: false } })
+        authenticateResult({
+          type: 'FAIL_AUTHENTIC',
+          data: { result: false, alertFire: true },
+        })
       );
     }
   };
@@ -26,4 +29,5 @@ const authenticateResult = (result) => {
 };
 export const authenticationAction = {
   authenticateSend,
+  authenticateResult,
 };

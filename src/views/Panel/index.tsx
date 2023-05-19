@@ -9,6 +9,7 @@ import { Input } from '../../components/common/Input';
 import Loading from '../../components/common/Loading';
 import { gryItemAction } from '../../redux/actions';
 import { RootState } from '../../redux/reducer/type';
+
 const Panel = () => {
   const [choseCard, setChoseCard] = useState<number | null>();
   const [listCards, setListCards] = useState([]);
@@ -59,6 +60,7 @@ const Panel = () => {
     localStorage.clear();
     window.location.href = '/';
   };
+
   return (
     <>
       {listCards.length === 0 ? (

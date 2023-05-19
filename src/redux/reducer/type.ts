@@ -6,6 +6,7 @@ export interface RootState {
     token: string;
     email: string;
     password: string;
+    alertFire: boolean;
   };
   cards: cardDetailTypes[];
 }

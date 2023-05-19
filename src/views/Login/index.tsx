@@ -1,12 +1,16 @@
 import { useFormik } from 'formik';
 import { FaGoogle } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import * as Yup from 'yup';
 import loginLogo from '../../assets/login.png';
 import loginLogo2 from '../../assets/login2.svg';
 import Checkbox from '../../components/common/Checkbox';
 import { Input } from '../../components/common/Input';
 import { authenticationAction } from '../../redux/actions';
+import { RootState } from '../../redux/reducer/type';
+
 function Login() {
   const dispatch = useDispatch();
   const formik = useFormik({
@@ -27,7 +31,24 @@ function Login() {
       );
     },
   });
+  const { alertFire } = useSelector((state: RootState) => state.authentication);
+  const MySwal = withReactContent(Swal);
 
+  alertFire &&
+    MySwal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'User not found',
+    }).then(
+      (res) =>
+        res.value &&
+        dispatch(
+          authenticationAction.authenticateResult({
+            type: 'FAIL_AUTHENTIC',
+            data: { result: false, alertFire: false },
+          })
+        )
+    );
   return (
     <>
       <div dir='rtl' className='flex h-full'>
