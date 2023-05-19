@@ -1,23 +1,21 @@
-// @ts-nocheck
 import { AiFillStar } from 'react-icons/ai';
-interface cardProps {
-  choseCard: number;
-}
-const Card = ({ cardDetail, setChoseCard, choseCard }) => {
+import { cardPropsType } from './type';
+
+const Card = ({ cardDetail, setChoseCard, choseCard }: cardPropsType) => {
   return (
     <div
       className={`flex justify-center ${
         choseCard === cardDetail.id ? 'bg-blue-500' : 'bg-white'
       } flex-wrap cursor-pointer	active:bg-blue-500 focus:bg-blue-500 `}
       onClick={(e) => {
-        setChoseCard(cardDetail.id);
+        setChoseCard(cardDetail?.id);
         e.stopPropagation();
       }}
     >
       <div className='rounded-lg h-85 shadow-lg  w-56 sm:w-80  dark:bg-darkBlue-100 dark:text-white'>
         <img
-          className='rounded-t-lg h-60  '
-          src={cardDetail && cardDetail?.images[0]}
+          className='rounded-t-lg h-60  w-full'
+          src={cardDetail?.poster}
           alt={cardDetail?.title}
         />
 

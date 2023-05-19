@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useFormik } from 'formik';
 import { FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';

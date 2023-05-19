@@ -1,6 +1,6 @@
 export interface inputProps {
   title: string;
-  onChange: Function;
+  onChange: React.Dispatch<React.SetStateAction<any>>;
   type: string;
   entry: string;
   placeholder: string;

@@ -1,6 +1,7 @@
-// @ts-nocheck
+import type {} from 'redux-thunk/extend-redux';
 import { api } from '../../services/api.service';
 import { userType } from './types';
+
 const authenticateSend = (user: userType) => {
   return async (dispatch) => {
     try {

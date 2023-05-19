@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { BiLock } from 'react-icons/bi';
 import { BsPerson } from 'react-icons/bs';
 import { inputProps } from './type';
