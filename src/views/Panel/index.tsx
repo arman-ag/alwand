@@ -55,15 +55,25 @@ const Panel = () => {
       value.editTitle = '';
     },
   });
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = '/';
+  };
   return (
     <>
       {listCards.length === 0 ? (
         <Loading />
       ) : (
         <>
-          <header className='flex sticky top-0 w-full items-center bg-[#F8F8FB] p-2 shadow-md'>
+          <header className='flex sticky top-0 w-full items-center bg-[#F8F8FB]  p-4  shadow-md'>
             <SlUser className='mr-2 text-xl' />
             <span>{email}</span>
+            <button
+              onClick={logout}
+              className='ml-3 bg-red-800  text-white font-bold py-1 px-2 border border-red-700 rounded'
+            >
+              Logout
+            </button>
           </header>
           <div
             onClick={() => setChoseCard(null)}
