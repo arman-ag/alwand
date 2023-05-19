@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import Card from '../../components/Card';
 import { Input } from '../../components/common/Input';
+import Loading from '../../components/common/Loading';
 import { gryItemAction } from '../../redux/actions';
 import { RootState } from '../../redux/reducer/type';
 const Panel = () => {
@@ -57,7 +58,7 @@ const Panel = () => {
   return (
     <>
       {listCards.length === 0 ? (
-        <div>loading</div>
+        <Loading />
       ) : (
         <>
           <header className='flex sticky top-0 w-full items-center bg-[#F8F8FB] p-2 shadow-md'>
