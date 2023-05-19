@@ -15,9 +15,9 @@ const Panel = () => {
   const [listCards, setListCards] = useState([]);
   const [pagination, setPagination] = useState(1);
   const dispatch = useDispatch();
-
   const cards = useSelector((state: RootState) => state.cards);
   const { email } = useSelector((state: RootState) => state.authentication);
+
   useEffect(() => {
     setListCards(cards);
   }, [cards]);
@@ -25,7 +25,7 @@ const Panel = () => {
   useEffect(() => {
     dispatch(gryItemAction.getItem(pagination));
   }, [pagination]);
-
+  //delete card action
   const deleteAction = () => {
     const remainingCards = listCards.filter((item) => {
       return item.id !== choseCard;
@@ -33,6 +33,7 @@ const Panel = () => {
     setListCards(remainingCards);
     setChoseCard(null);
   };
+  //edit card title action
   const editTitle = (newTitle: string) => {
     const newList = listCards?.map((item) => {
       if (item?.id === choseCard) {
@@ -43,7 +44,7 @@ const Panel = () => {
     setListCards(newList);
     setChoseCard(null);
   };
-
+  //validation
   const formik = useFormik({
     initialValues: {
       editTitle: '',
@@ -56,6 +57,7 @@ const Panel = () => {
       value.editTitle = '';
     },
   });
+  //logout action
   const logout = () => {
     localStorage.clear();
     window.location.href = '/';

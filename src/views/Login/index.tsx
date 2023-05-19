@@ -13,6 +13,8 @@ import { RootState } from '../../redux/reducer/type';
 
 function Login() {
   const dispatch = useDispatch();
+  const { alertFire } = useSelector((state: RootState) => state.authentication);
+  //validation check
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -31,23 +33,20 @@ function Login() {
       );
     },
   });
-  const { alertFire } = useSelector((state: RootState) => state.authentication);
+  //alert
   const MySwal = withReactContent(Swal);
-
   alertFire &&
     MySwal.fire({
       icon: 'error',
       title: 'Oops...',
       text: 'User not found',
-    }).then(
-      (res) =>
-        res.value &&
-        dispatch(
-          authenticationAction.authenticateResult({
-            type: 'FAIL_AUTHENTIC',
-            data: { result: false, alertFire: false },
-          })
-        )
+    }).then(() =>
+      dispatch(
+        authenticationAction.authenticateResult({
+          type: 'FAIL_AUTHENTIC',
+          data: { result: false, alertFire: false },
+        })
+      )
     );
   return (
     <>
